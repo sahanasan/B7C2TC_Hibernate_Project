@@ -1,47 +1,48 @@
 package com.cg.smms.service;
 
 import com.cg.smms.entities.MallAdmin;
+import com.cg.smms.entities.Shop;
+import com.cg.smms.entities.User;
 import com.cg.smms.repositry.IMallAdminRepository;
 import com.cg.smms.repositry.IMallAdminRepositoryImpl;
 import com.cg.smms.service.IAdminService;
 
 public class IAdminServiceImpl implements IAdminService {
 	
-	private IMallAdminRepository repo;
+	private IMallAdminRepository repository;
 	
 	public IAdminServiceImpl() {
-		repo=new IMallAdminRepositoryImpl();
+		repository=new IMallAdminRepositoryImpl();
 	}
 
 	@Override
-	public void addMallAdmin(MallAdmin mallAdmin) {
-		repo.beginTranscation();
-		repo.addMallAdmin(mallAdmin);
-		repo.commitTranscation();
-		
+	public boolean approveNewShop(Shop shop) {
+		repository.beginTransaction();
+		repository.commitTransaction();
+		return false;
 	}
 
 	@Override
-	public void updateMallAdmin(MallAdmin mallAdmin) {
-	  repo.beginTranscation();
-	  repo.updateMallAdmin(mallAdmin);
-	  repo.commitTranscation();
-		
+	public User updateUser(User user) {
+		repository.beginTransaction();
+		repository.commitTransaction();
+		return null;
 	}
 
 	@Override
-	public void deleteMallAdmin(int id) {
-		// TODO Auto-generated method stub
-		
+	public User login(User user) {
+		repository.beginTransaction();
+		repository.commitTransaction();
+		return null;
 	}
 
 	@Override
-	public void searchMallAdmin(int id) {
-		repo.beginTranscation();
-		repo.searchMallAdmin(id);
-		repo.commitTranscation();
-		
-		
+	public boolean logOut() {
+		repository.beginTransaction();
+		repository.commitTransaction();
+		return false;
 	}
 }
+
+
 	

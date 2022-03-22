@@ -21,7 +21,6 @@ public class ICustomerServiceImpl implements ICustomerService
 	@Override
 	public List<Item> searchItem(String itemName) {
 		repository.beginTransaction();
-
 		
 		repository.commitTransaction();
 		
@@ -37,33 +36,25 @@ public class ICustomerServiceImpl implements ICustomerService
 
 	@Override
 	public Mall searchMall(long id) {
-		repository.beginTransaction();
-		repository.commitTransaction();
-		repository.searchCustomer(1);
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean cancelOrder(long orderId) {
-		repository.beginTransaction();
-		repository.commitTransaction();
-		repository.deleteCustomer(0);
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public User login(User user) {
-		repository.beginTransaction();
-		repository.commitTransaction();
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean logout() {
 		// TODO Auto-generated method stub
-		repository.beginTransaction();
-		repository.commitTransaction();
 		return false;
 	}
-	
 }

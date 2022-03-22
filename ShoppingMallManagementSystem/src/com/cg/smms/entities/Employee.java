@@ -1,18 +1,26 @@
 package com.cg.smms.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
  @Entity
  @Table(name="employee")
  
-public class Employee {
+public class Employee implements Serializable{
 	 
+	 private static final long serialVersionUID = 1L;
 	 @Id
+	 
 	 @Column(name="id")
 private long id;
 	 
@@ -31,10 +39,13 @@ private String address;
 	 @Column(name="designation")
 private String designation;
 	 
-	 @Column(name="shop")
-private Shop shop;
+	 @ManyToOne
+	 @JoinColumn(name="shopEmployees_Id")
+	 private Shop shopEmployees_Id;
+		
+private Shop shop_id;
 
-	public Employee(long id, String name, LocalDate dob, float salary, String address, String designation, Shop shop) {
+	public Employee(long id, String name, LocalDate dob, float salary, String address, String designation, Shop shopId) {
 		
 		this.id = id;
 		this.name = name;
@@ -42,7 +53,7 @@ private Shop shop;
 		this.salary = salary;
 		this.address = address;
 		this.designation = designation;
-		this.shop = shop;
+		this.shop_id = shop_id;
 	}
 
 	public Employee() {
@@ -98,11 +109,12 @@ private Shop shop;
 	}
 
 	public Shop getShop() {
-		return shop;
+		return shop_id;
 	}
 
 	public void setShop(Shop shop) {
-		this.shop = shop;
+		this.shop_id = shop;
 	}
 	 
+	
 }

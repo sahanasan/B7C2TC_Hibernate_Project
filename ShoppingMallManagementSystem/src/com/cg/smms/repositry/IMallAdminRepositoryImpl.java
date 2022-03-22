@@ -4,12 +4,11 @@ import javax.persistence.EntityManager;
 
 import com.cg.smms.entities.MallAdmin;
 
-
-public class IMallAdminRepositoryImpl implements IMallAdminRepository{
-	
+public class IMallAdminRepositoryImpl implements IMallAdminRepository
+{
 	private EntityManager entityManager;
-	
-	public IMallAdminRepositoryImpl() {
+	public IMallAdminRepositoryImpl()
+	{
 		entityManager=JPAUtil.getEntityManager();
 	}
 
@@ -21,35 +20,31 @@ public class IMallAdminRepositoryImpl implements IMallAdminRepository{
 
 	@Override
 	public MallAdmin updateMallAdmin(MallAdmin mallAdmin) {
-		entityManager.merge(mallAdmin);
-		return mallAdmin;
+		MallAdmin update = entityManager.merge(mallAdmin);
+		return update;
 	}
 
 	@Override
-	public void deleteMallAdmin(int id) {
-		MallAdmin MallAdmin=entityManager.find(null, entityManager);
-		entityManager.remove(MallAdmin);
-		
+	public MallAdmin deleteMallAdmin(long id) {
+		entityManager.remove(id);
+		return null;
 	}
 
 	@Override
-	public void searchMallAdmin(int id) {
-		entityManager.find(null, entityManager);
-		
+	public MallAdmin searchMallAdmin(long id) {
+		entityManager.find(MallAdmin.class, id);
+		return null;
 	}
 
 	@Override
-	public void commitTranscation() {
+	public void beginTransaction() {
+		entityManager.getTransaction().begin();
+	}
+
+	@Override
+	public void commitTransaction() {
 		entityManager.getTransaction().commit();
 		
 	}
 
-	@Override
-	public void beginTranscation() {
-		entityManager.getTransaction().begin();
-		
-	}
 }
-	
-
-	

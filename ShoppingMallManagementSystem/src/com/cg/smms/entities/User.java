@@ -1,5 +1,7 @@
 package com.cg.smms.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,20 +9,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user")
-
-
 public class User {
 	
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 private long id;
-	
+	 
 	@Column(name="name")
 private String name;
 	
@@ -32,12 +33,12 @@ private String password;
 	
 	@OneToOne (cascade=CascadeType.ALL)
 	@JoinColumn (name="id")
-	private  Mall Mall ;
+	private MallAdmin mallAdmin;
 	
-	@OneToOne (mappedBy="orderDetails")
-	private Customer orderid;
-		
-	
+	@OneToOne (cascade=CascadeType.ALL)
+	@JoinColumn (name="id")
+	private List<OrderDetails> order_id;
+    
 
 	public User(long id, String name, String type, String password ) {
 		
@@ -45,24 +46,13 @@ private String password;
 		this.name = name;
 		this.type = type;
 		this.password = password;
-	
-	
+		this.order_id=order_id;
 	}
 
 	public User() {
 		
 	}
 	
-	
-	
-	
-	public Mall getMall() {
-		return Mall;
-	}
-
-	public void setMall(Mall mall) {
-		Mall = mall;
-	}
 
 	public long getId() {
 		return id;
@@ -70,6 +60,25 @@ private String password;
 
 	public void setId(long id) {
 		this.id = id;
+	
+	}
+	
+	
+
+	public List<OrderDetails> getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(List<OrderDetails> order_id) {
+		this.order_id = order_id;
+	}
+
+	public MallAdmin getMallAdmin() {
+		return mallAdmin;
+	}
+
+	public void setMallAdmin(MallAdmin mallAdmin) {
+		this.mallAdmin = mallAdmin;
 	}
 
 	public String getName() {

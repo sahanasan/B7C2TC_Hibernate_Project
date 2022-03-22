@@ -1,17 +1,26 @@
 package com.cg.smms.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="shop_ower")
+@Table(name="shop_owner")
 
 public class ShopOwner {
+	
+	
 	@Id
+	@OneToMany(mappedBy="shopOwner",cascade=CascadeType.ALL)	
+	 private List<Shop> shop= new ArrayList<>();
 	@Column(name="id")
 private long id;
 	
@@ -24,21 +33,8 @@ private String address;
 	@Column(name="dob")
 private LocalDate dob;
 	
-	@Column(name="shop")
-private Shop shop;
-
-	public ShopOwner(long id, String name, String address, LocalDate dob, Shop shop) {
-		
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.dob = dob;
-		this.shop = shop;
-	}
-
-	public ShopOwner() {
-		
-	}
+	@Column(name="shop_id")
+private Shop shop_id;
 
 	public long getId() {
 		return id;
@@ -72,19 +68,35 @@ private Shop shop;
 		this.dob = dob;
 	}
 
-	public Shop getShop() {
-		return shop;
+	public Shop getShop_id() {
+		return shop_id;
 	}
 
-	public void setShop(Shop shop) {
-		this.shop = shop;
+	public void setShop_id(Shop shop_id) {
+		this.shop_id = shop_id;
+	}
+
+	public ShopOwner(long id, String name, String address, LocalDate dob, Shop shop_id) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.dob = dob;
+		this.shop_id = shop_id;
+	}
+
+	public ShopOwner() {
+		
 	}
 
 	@Override
 	public String toString() {
-		return "ShopOwner [id=" + id + ", name=" + name + ", address=" + address + ", dob=" + dob + ", shop=" + shop
-				+ "]";
+		return "ShopOwner [shop=" + shop + ", id=" + id + ", name=" + name + ", address=" + address + ", dob=" + dob
+				+ ", shop_id=" + shop_id + "]";
 	}
+
+	
+
 	
 	
 }
+
